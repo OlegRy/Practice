@@ -9,6 +9,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Performs parsing of JSON response from yandex places API
+ */
 public class ParseUtils {
 
     private static final String JSON_RESPONSE = "response";

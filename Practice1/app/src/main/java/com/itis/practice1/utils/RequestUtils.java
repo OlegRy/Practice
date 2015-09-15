@@ -22,13 +22,16 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Performs requests to yandex places API and draws route
+ */
 public class RequestUtils extends AsyncTask<Void, Void, String> implements RoutingListener {
 
     private double mLatitude;
     private double mLongitude;
     private WeakReference<GoogleMap> mGoogleMapWeakReference;
 
-
+    // yandex places API request URL constants
     private static final String REQUEST_URL = "https://geocode-maps.yandex.ru/1.x/?geocode=";
     private static final String PARAM_KIND = "&kind=locality";
     private static final String PARAM_FSPN = "&rspn=0";
