@@ -2,7 +2,6 @@ package com.itis.practice1.utils;
 
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.directions.route.Route;
 import com.directions.route.Routing;
@@ -77,16 +76,24 @@ public class RequestUtils extends AsyncTask<Void, Void, String> implements Routi
                 try {
                     List<Place> places = ParseUtils.parse(result);
                     addMarkers(map, places);
-                    Routing routing = new Routing.Builder()
-                            .travelMode(Routing.TravelMode.WALKING)
-                            .withListener(this)
-                            .waypoints(getWaypoints(places))
-                            .build();
-                    routing.execute();
+                    createRoute(getWaypoints(places));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    private void createRoute(List<LatLng> waypoints) {
+        for (int i = 0; i < waypoints.size() - 1; i++) {
+            Routing routing = new Routing.Builder()
+                            .travelMode(Routing.TravelMode.WALKING)
+                            .withListener(this)
+                            .waypoints(waypoints.get(i), waypoints.get(i + 1))
+                            .build();
+            routing.execute();
+
         }
     }
 
@@ -100,8 +107,8 @@ public class RequestUtils extends AsyncTask<Void, Void, String> implements Routi
         }
     }
 
+
     private List<LatLng> getWaypoints(List<Place> places) {
-        Log.d("tag", "current: " + mLatitude + "; " + mLongitude);
         List<LatLng> waypoints = new ArrayList<>();
 
         waypoints.add(new LatLng(mLatitude, mLongitude));
