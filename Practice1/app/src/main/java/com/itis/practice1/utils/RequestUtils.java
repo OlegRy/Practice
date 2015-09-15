@@ -1,10 +1,16 @@
 package com.itis.practice1.utils;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.util.Log;
 
+import com.directions.route.Route;
+import com.directions.route.Routing;
+import com.directions.route.RoutingListener;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.itis.practice1.model.Place;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -14,9 +20,10 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
-public class RequestUtils extends AsyncTask<Void, Void, String> {
+public class RequestUtils extends AsyncTask<Void, Void, String> implements RoutingListener {
 
     private double mLatitude;
     private double mLongitude;
@@ -68,7 +75,14 @@ public class RequestUtils extends AsyncTask<Void, Void, String> {
             GoogleMap map = mGoogleMapWeakReference.get();
             if (map != null) {
                 try {
-                    addMarkers(map, ParseUtils.parse(result));
+                    List<Place> places = ParseUtils.parse(result);
+                    addMarkers(map, places);
+                    Routing routing = new Routing.Builder()
+                            .travelMode(Routing.TravelMode.WALKING)
+                            .withListener(this)
+                            .waypoints(getWaypoints(places))
+                            .build();
+                    routing.execute();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -84,5 +98,42 @@ public class RequestUtils extends AsyncTask<Void, Void, String> {
                         .title(place.getName()));
             }
         }
+    }
+
+    private List<LatLng> getWaypoints(List<Place> places) {
+        Log.d("tag", "current: " + mLatitude + "; " + mLongitude);
+        List<LatLng> waypoints = new ArrayList<>();
+
+        waypoints.add(new LatLng(mLatitude, mLongitude));
+
+        for (Place place : places) {
+            waypoints.add(new LatLng(place.getLatitude(), place.getLongitute()));
+        }
+        return waypoints;
+    }
+
+    @Override
+    public void onRoutingFailure() {
+
+    }
+
+    @Override
+    public void onRoutingStart() {
+
+    }
+
+    @Override
+    public void onRoutingSuccess(PolylineOptions polylineOptions, Route route) {
+        GoogleMap map = mGoogleMapWeakReference.get();
+        PolylineOptions polyoptions = new PolylineOptions();
+        polyoptions.color(Color.BLUE);
+        polyoptions.width(10);
+        polyoptions.addAll(polylineOptions.getPoints());
+        if (map != null) map.addPolyline(polyoptions);
+    }
+
+    @Override
+    public void onRoutingCancelled() {
+
     }
 }

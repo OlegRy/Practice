@@ -95,7 +95,4 @@ public class PracticeActivity extends AppCompatActivity implements OnMapReadyCal
     private void addClosestPlaces(double latitude, double longitude) {
         new RequestUtils(latitude, longitude, mGoogleMap).execute();
     }
-
-
-    //https://geocode-maps.yandex.ru/1.x/?geocode=55.7852241,49.1635873&rspn=0&format=json&sco=latlong&kind=locality
 }
