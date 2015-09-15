@@ -8,4 +8,7 @@
     <string name="connection_failed">Failed to receive your location</string>
     <string name="connection_suspended">Connection suspended</string>
     <string name="current_position">You are here</string>
+    <string name="places_not_found">Places not found</string>
+    <string name="format">json</string>
+    <string name="error_processing">Processing data error</string>
 </resources>
