@@ -16,6 +16,9 @@ import com.itis.practice2.utils.Constants;
 
 import itis.com.practice2.R;
 
+/**
+ * List of images.
+ */
 public class ImagesListFragment extends Fragment implements ImageAdapter.OnItemClickListener {
 
     private RecyclerView rv_images;
