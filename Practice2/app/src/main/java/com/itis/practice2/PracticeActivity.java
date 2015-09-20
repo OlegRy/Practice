@@ -1,12 +1,16 @@
 package com.itis.practice2;
 
+import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -39,15 +43,34 @@ public class PracticeActivity extends AppCompatActivity implements ImagesListFra
     }
 
     @Override
-    public void onImageClick(View view, ImagesListFragment fragment) {
-
-        ImageView iv_image = (ImageView) view.findViewById(R.id.iv_image);
-        Bitmap image = ((BitmapDrawable) iv_image.getDrawable()).getBitmap();
+    public void onImageClick(View view, ImagesListFragment imagesListFragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        ImageView imageView = (ImageView) view.findViewById(R.id.iv_image);
+        Bitmap image = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
         ImageFragment imageFragment = ImageFragment.newInstance(image);
 
-        FragmentTransitionLauncher.with(view.getContext()).image(image).from(iv_image).prepare(imageFragment);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, imageFragment).addToBackStack(null).commit();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            prepareTransition(imagesListFragment, imageFragment);
+            transaction.addSharedElement(imageView, getResources().getString(R.string.transition));
+        } else {
+            FragmentTransitionLauncher.with(view.getContext()).image(image).from(imageView).prepare(imageFragment);
+        }
+        transaction.replace(R.id.container, imageFragment).addToBackStack(null).commit();
 
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    private void prepareTransition(ImagesListFragment imagesListFragment, ImageFragment imageFragment) {
+        Transition changeTransform = TransitionInflater.from(this)
+                .inflateTransition(R.transition.change_transform);
+        Transition explodeTransition = TransitionInflater.from(this)
+                .inflateTransition(android.R.transition.explode);
+
+        imagesListFragment.setSharedElementReturnTransition(changeTransform);
+        imagesListFragment.setExitTransition(explodeTransition);
+
+        imageFragment.setSharedElementEnterTransition(changeTransform);
+        imageFragment.setEnterTransition(explodeTransition);
     }
 
 }

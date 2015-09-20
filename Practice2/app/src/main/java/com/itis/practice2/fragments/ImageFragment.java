@@ -1,6 +1,7 @@
 package com.itis.practice2.fragments;
 
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -55,9 +56,10 @@ public class ImageFragment extends Fragment {
         iv_image = (ImageView) view.findViewById(R.id.iv_image);
 
         if (mBitmap != null) iv_image.setImageBitmap(mBitmap);
-
-        final ExitFragmentTransition exitFragmentTransition = FragmentTransition.with(this).to(view.findViewById(R.id.iv_image)).start(savedInstanceState);
-        exitFragmentTransition.startExitListening();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            final ExitFragmentTransition exitFragmentTransition = FragmentTransition.with(this).to(view.findViewById(R.id.iv_image)).start(savedInstanceState);
+            exitFragmentTransition.startExitListening();
+        }
         return view;
     }
 

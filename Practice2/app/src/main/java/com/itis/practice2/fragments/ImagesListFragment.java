@@ -21,7 +21,7 @@ import itis.com.practice2.R;
  */
 public class ImagesListFragment extends Fragment implements ImageAdapter.OnItemClickListener {
 
-    private RecyclerView rv_images;
+    private RecyclerView mRvImages;
     private StaggeredGridLayoutManager mGridLayoutManager;
     private OnImageClickListener mCallback;
     private ImageAdapter mAdapter;
@@ -38,40 +38,21 @@ public class ImagesListFragment extends Fragment implements ImageAdapter.OnItemC
 
         View view = inflater.inflate(R.layout.fragment_images_list, container, false);
 
-        rv_images = (RecyclerView) view.findViewById(R.id.rv_images);
-
-        mCurrentColumnsNumber = getColumnsNumber(view);
-
-
+        mCurrentColumnsNumber = getResources().getInteger(R.integer.columns);
+        mRvImages = (RecyclerView) view.findViewById(R.id.rv_images);
         mGridLayoutManager = new StaggeredGridLayoutManager(mCurrentColumnsNumber, StaggeredGridLayoutManager.VERTICAL);
-
         mAdapter = new ImageAdapter(Constants.getImagesUrls(), getActivity());
         mAdapter.setItemClickListener(this);
-
-        rv_images.setLayoutManager(mGridLayoutManager);
-        rv_images.setAdapter(mAdapter);
+        mRvImages.setLayoutManager(mGridLayoutManager);
+        mRvImages.setAdapter(mAdapter);
         return view;
-    }
-
-    private int getColumnsNumber(View view) {
-        boolean isPortraitOrientation = getActivity().getResources().getConfiguration()
-                .orientation == Configuration.ORIENTATION_PORTRAIT;
-        if (view.findViewById(R.id.ll_root_big) == null) {
-            return isPortraitOrientation ? 1 : 2;
-        }
-        return isPortraitOrientation ? 2 : 3;
-    }
-
-    private int getColumnsNumber(int orientation) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) mCurrentColumnsNumber--;
-        else mCurrentColumnsNumber++;
-        return mCurrentColumnsNumber;
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        rv_images.setLayoutManager(new StaggeredGridLayoutManager(getColumnsNumber(newConfig.orientation),
+        mCurrentColumnsNumber = getResources().getInteger(R.integer.columns);
+        mRvImages.setLayoutManager(new StaggeredGridLayoutManager(mCurrentColumnsNumber,
                 StaggeredGridLayoutManager.VERTICAL));
     }
 
