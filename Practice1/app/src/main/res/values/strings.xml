@@ -11,4 +11,13 @@
     <string name="places_not_found">Places not found</string>
     <string name="format">json</string>
     <string name="error_processing">Processing data error</string>
+    <string name="request_service">com.itis.practice.RequestService</string>
+    <string name="tv_description">Description</string>
+    <string name="action_ready">ready</string>
+    <string name="me_delete">delete</string>
+    <string name="message_title">Message</string>
+    <string name="message">Data is updated</string>
+    <string name="ok">Ok</string>
+    <string name="retry">Retry</string>
+    <string name="no_connection">No Internet connection</string>
 </resources>
