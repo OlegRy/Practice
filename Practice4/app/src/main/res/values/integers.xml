@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="click">1</integer>
+    <integer name="time_passed">2</integer>
+    <integer name="boot">3</integer>
+    <integer name="battery">4</integer>
+    <integer name="connected">5</integer>
+</resources>

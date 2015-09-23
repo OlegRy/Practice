@@ -9,4 +9,9 @@
     <string name="places_not_found">Места не найдены</string>
     <string name="format">json</string>
     <string name="error_processing">Ошибка обработки данных</string>
+    <string name="tv_description">Описание</string>
+    <string name="message_title">Сообщение</string>
+    <string name="message">Данные обновлены</string>
+    <string name="retry">Повторить</string>
+    <string name="no_connection">Нет соединения с Интернет</string>
 </resources>
