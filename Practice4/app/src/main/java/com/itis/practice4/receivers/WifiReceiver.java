@@ -16,7 +16,7 @@ public class WifiReceiver extends BroadcastReceiver {
         String name = intent.getStringExtra(PracticeActivity.TAG_MESSAGE);
         if (name != null && getWifiName(context).contains(name)) {
             NotificationBuilder.notify(context, R.drawable.ic_info_black_24dp,
-                    context.getResources().getString(R.string.app_name),
+                    R.string.app_name,
                     String.format(context.getResources().getString(R.string.connected), name),
                     context.getResources().getInteger(R.integer.connected), false);
         }

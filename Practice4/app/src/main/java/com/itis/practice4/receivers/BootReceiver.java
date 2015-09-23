@@ -15,10 +15,7 @@ public class BootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
                 new Intent(context, PracticeActivity.class), 0);
-        NotificationBuilder.notify(context, R.drawable.ic_info_black_24dp,
-                context.getResources().getString(R.string.app_name),
-                context.getResources().getString(R.string.boot),
-                context.getResources().getInteger(R.integer.boot),
-                true, pendingIntent);
+        NotificationBuilder.notify(context, R.drawable.ic_info_black_24dp, R.string.app_name,
+                R.string.boot, context.getResources().getInteger(R.integer.boot), true, pendingIntent);
     }
 }

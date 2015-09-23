@@ -7,13 +7,14 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.itis.practice4.receivers.ActionButtonReceiver;
+import com.itis.practice4.receivers.BatteryReceiver;
 import com.itis.practice4.receivers.WifiReceiver;
 import com.itis.practice4.services.NotificationService;
 import com.itis.practice4.utils.NotificationBuilder;
@@ -30,6 +31,8 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     private Button mBtnCheckWifiConnection;
     private Button mBtnStopCatching;
     private WifiReceiver mWifiReceiver;
+    private BatteryReceiver mBatteryReceiver;
+    private ActionButtonReceiver mActionButtonReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,8 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
         mBtnCheckWifiConnection = (Button) findViewById(R.id.btn_catch_connect);
         mBtnStopCatching = (Button) findViewById(R.id.btn_stop_catching);
         mWifiReceiver = new WifiReceiver();
+        mBatteryReceiver = new BatteryReceiver();
+        mActionButtonReceiver = new ActionButtonReceiver();
         mBtnNotifyNow.setOnClickListener(this);
         mBtnNotifyByTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +75,8 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
                 }
             }
         });
-
+        registerReceiver(mBatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        registerReceiver(mActionButtonReceiver, new IntentFilter(ActionButtonReceiver.ACTION_BUTTON));
     }
 
     private void sendMessage(String message) {
@@ -82,16 +88,21 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        NotificationBuilder.notify(this, R.drawable.ic_info_black_24dp, getResources().getString(R.string.app_name),
-                getResources().getString(R.string.click), getResources().getInteger(R.integer.click), false);
+        NotificationBuilder.notify(this, R.drawable.ic_info_black_24dp, R.string.app_name,
+                R.string.click, getResources().getInteger(R.integer.click), false);
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        startService(new Intent(this, NotificationService.class));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d("tag", "onDestroy");
-        startService(new Intent(this, NotificationService.class));
+        unregisterReceiver(mBatteryReceiver);
+        unregisterReceiver(mActionButtonReceiver);
     }
 
     @Override

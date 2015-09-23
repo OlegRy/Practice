@@ -27,8 +27,7 @@ public class TimeReceiver extends BroadcastReceiver {
             canCancel = true;
         }
         NotificationBuilder.notify(context, R.drawable.ic_info_black_24dp,
-                context.getResources().getString(R.string.app_name), notificationText,
-                context.getResources().getInteger(R.integer.time_passed),
-                canCancel, pendingIntent);
+                R.string.app_name, notificationText,
+                context.getResources().getInteger(R.integer.time_passed), canCancel, pendingIntent);
     }
 }
