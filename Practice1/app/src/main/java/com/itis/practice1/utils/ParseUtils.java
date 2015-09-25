@@ -19,6 +19,7 @@ public class ParseUtils {
     private static final String JSON_FEATURE_MEMBER = "featureMember";
     private static final String JSON_GEO_OBJECT = "GeoObject";
     private static final String JSON_NAME = "name";
+    private static final String JSON_DESCRIPTION = "description";
     private static final String JSON_POINT = "Point";
     private static final String JSON_POS = "pos";
 
@@ -28,7 +29,6 @@ public class ParseUtils {
         JSONObject jsonObject = new JSONObject(json);
         JSONArray placesJson = jsonObject.getJSONObject(JSON_RESPONSE).getJSONObject(JSON_GEO_OBJECT_COLLECTION)
                 .getJSONArray(JSON_FEATURE_MEMBER);
-
         for (int i = 0; i < placesJson.length(); i++) {
             JSONObject geoObject = placesJson.getJSONObject(i).getJSONObject(JSON_GEO_OBJECT);
             JSONObject point = geoObject.getJSONObject(JSON_POINT);
@@ -37,6 +37,7 @@ public class ParseUtils {
             Place place = new Place();
 
             place.setName(geoObject.getString(JSON_NAME));
+            place.setDescription(geoObject.getString(JSON_DESCRIPTION));
             place.setLatitude(Double.parseDouble(coordinates[1]));
             place.setLongitute(Double.parseDouble(coordinates[0]));
 

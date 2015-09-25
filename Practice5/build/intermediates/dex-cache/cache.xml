@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/pre-dexed/debug/classes-bff8a9b81bd7f70c50ecd0fe47b3e937f3fdea0d.jar" />
+    </item>
+    <item
+        jar="/home/oleg/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-8702e50219aa6b4b94ebd6fb9c215d14f70615a5.jar" />
+    </item>
+    <item
+        jar="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/exploded-aar/com.android.support.test/rules/0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="9ba8941f05fbf1826831a36c9afb82d47c9bbbb8">
+        <dex dex="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/pre-dexed/androidTest/debug/classes-54a11eed5435eeec5a58b32ae5b6933cd4291ac4.jar" />
+    </item>
+    <item
+        jar="/home/oleg/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="2973d150c0dc1fefe998f834810d68f278ea58ec">
+        <dex dex="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/pre-dexed/androidTest/debug/junit-4.12-7acdc103fcc1e14feb573cb3a42f51ce414c4ed5.jar" />
+    </item>
+    <item
+        jar="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/pre-dexed/debug/classes-231f43b20a37425d8afe76488eb0ef112ba574e3.jar" />
+    </item>
+    <item
+        jar="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/exploded-aar/com.android.support.test/runner/0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="eb6b41b1aa9906a727fb4841aa000f23f63d9330">
+        <dex dex="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/pre-dexed/androidTest/debug/classes-795e87923d7cfb747791936625be49b93eccf499.jar" />
+    </item>
+    <item
+        jar="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/exploded-aar/com.android.support.test/exposed-instrumentation-api-publish/0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="93a09b0222200f83779a784ac9b25c2554653495">
+        <dex dex="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/pre-dexed/androidTest/debug/classes-d6aae83adc29d86f903988a3eb9d1eb5d114a87c.jar" />
+    </item>
+    <item
+        jar="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-68fa1a3d02baacb4412afe6444e60110804c89f5.jar" />
+    </item>
+    <item
+        jar="/home/oleg/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
+        <dex dex="/home/oleg/AndroidStudioProjects/Practice/Practice5/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-core-1.3-a64766ab8542c9c635cefb65c5b5e163863326ee.jar" />
+    </item>
+
+</items>
